@@ -92,12 +92,14 @@ class MainFragment : Fragment() {
     }
 
     private fun resetBets(){
-        if (binding.gilBet.text.isNotEmpty())
-            binding.gilBet.setText("0")
-        if (binding.talBet.text.isNotEmpty())
-            binding.talBet.setText("0")
-        if (binding.shayBet.text.isNotEmpty())
-            binding.shayBet.setText("0")
+        resources.getInteger(R.integer.default_bet).toString().let { defaultBet ->
+            if (binding.gilBet.text.isNotEmpty())
+                binding.gilBet.setText(defaultBet)
+            if (binding.talBet.text.isNotEmpty())
+                binding.talBet.setText(defaultBet)
+            if (binding.shayBet.text.isNotEmpty())
+                binding.shayBet.setText(defaultBet)
+        }
 
         binding.gilBet.requestFocus()
         binding.gilBet.selectAll()
