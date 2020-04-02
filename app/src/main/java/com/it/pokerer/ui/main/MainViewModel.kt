@@ -14,6 +14,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val scores: MutableMap<Player, MutableLiveData<Int>> = mutableMapOf()
 
+    private val _lastBets: MutableLiveData<Map<Player, Int>> = MutableLiveData()
+    val lastBets: LiveData<Map<Player, Int>> = _lastBets
+
     fun getPlayerScore(player : Player): LiveData<Int>? = scores[player]
 
     init {
@@ -30,17 +33,23 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun roundPlayed(bets: Map<Player, Int>, winner: Player){
         var totalWon = 0
 
+        val newLastBets = mutableMapOf<Player, Int>()
+
         bets.forEach {
             if(it.key != winner && it.value != 0){
                 totalWon += it.value
                 val newScore = scores[it.key]!!.value!! - it.value
                 scores[it.key]!!.value = newScore
                 repository.setPlayerScore(context, it.key, newScore)
+                newLastBets[it.key] = it.value
             }
         }
 
-        val winnerNewScore = scores[winner]!!.value!! + totalWon
-        scores[winner]!!.value = winnerNewScore
-        repository.setPlayerScore(context, winner, winnerNewScore)
+        if(totalWon > 0) {
+            val winnerNewScore = scores[winner]!!.value!! + totalWon
+            scores[winner]!!.value = winnerNewScore
+            repository.setPlayerScore(context, winner, winnerNewScore)
+            _lastBets.value = newLastBets
+        }
     }
 }
