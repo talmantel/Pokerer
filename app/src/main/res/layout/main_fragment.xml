@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.it.pokerer.ui.main.MainViewModel" />
+        <variable
+            name="gil"
+            type="com.it.pokerer.Repository.Companion.Player" />
+        <variable
+            name="tal"
+            type="com.it.pokerer.Repository.Companion.Player" />
+        <variable
+            name="shay"
+            type="com.it.pokerer.Repository.Companion.Player" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".ui.main.MainFragment">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/topGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/margin_big" />
+
+        <TextView
+            android:id="@+id/gilTitle"
+            android:layout_width="@dimen/titleWidth"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/player_name_gil"
+            android:textColor="@color/title"
+            android:textSize="@dimen/titleTextSize"
+            app:layout_constraintEnd_toStartOf="@+id/talTitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/topGuideline" />
+
+        <TextView
+            android:id="@+id/talTitle"
+            android:layout_width="@dimen/titleWidth"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/player_name_tal"
+            android:textColor="@color/title"
+            android:textSize="@dimen/titleTextSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/shayTitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/gilTitle"
+            app:layout_constraintTop_toTopOf="@+id/topGuideline" />
+
+        <TextView
+            android:id="@+id/shayTitle"
+            android:layout_width="@dimen/titleWidth"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/player_name_shay"
+            android:textColor="@color/title"
+            android:textSize="@dimen/titleTextSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/talTitle"
+            app:layout_constraintTop_toTopOf="@+id/topGuideline" />
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:score="@{viewmodel.getPlayerScore(gil)}"
+            android:textSize="@dimen/scoreTextSize"
+            app:layout_constraintEnd_toEndOf="@+id/gilTitle"
+            app:layout_constraintStart_toStartOf="@+id/gilTitle"
+            app:layout_constraintTop_toBottomOf="@+id/gilTitle"
+            tools:text="150"
+            tools:textColor="@color/positive_score" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:score="@{viewmodel.getPlayerScore(tal)}"
+            android:textSize="@dimen/scoreTextSize"
+            app:layout_constraintEnd_toEndOf="@+id/talTitle"
+            app:layout_constraintStart_toStartOf="@+id/talTitle"
+            app:layout_constraintTop_toBottomOf="@+id/talTitle"
+            tools:text="150"
+            tools:textColor="@color/positive_score" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:score="@{viewmodel.getPlayerScore(shay)}"
+            android:textSize="@dimen/scoreTextSize"
+            app:layout_constraintEnd_toEndOf="@+id/shayTitle"
+            app:layout_constraintStart_toStartOf="@+id/shayTitle"
+            app:layout_constraintTop_toBottomOf="@+id/shayTitle"
+            tools:text="150"
+            tools:textColor="@color/positive_score"/>
+
+        <EditText
+            android:id="@+id/gilBet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:ems="3"
+            android:gravity="center"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:nextFocusRight="@id/talBet"
+            android:nextFocusForward="@id/talBet"
+            android:selectAllOnFocus="true"
+            android:text="0"
+            android:textColor="@color/bet"
+            android:textSize="@dimen/betTextSize"
+            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            tools:text="98745" />
+
+        <EditText
+            android:id="@+id/talBet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:ems="3"
+            android:gravity="center"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:nextFocusRight="@id/shayBet"
+            android:nextFocusForward="@id/shayBet"
+            android:selectAllOnFocus="true"
+            android:text="0"
+            android:textColor="@color/bet"
+            android:textSize="@dimen/betTextSize"
+            app:layout_constraintEnd_toEndOf="@+id/textView4"
+            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:text="98745" />
+
+        <EditText
+            android:id="@+id/shayBet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:ems="3"
+            android:gravity="center"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:nextFocusRight="@id/gilBet"
+            android:nextFocusForward="@id/gilBet"
+            android:selectAllOnFocus="true"
+            android:text="0"
+            android:textColor="@color/bet"
+            android:textSize="@dimen/betTextSize"
+            app:layout_constraintEnd_toEndOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            tools:text="98745" />
+
+        <Button
+            android:id="@+id/gilWonButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:backgroundTint="@color/winButtonBackground"
+            android:text="@string/win_button"
+            android:textColor="@color/winButton"
+            android:textSize="@dimen/winButtonTextSize"
+            app:layout_constraintEnd_toEndOf="@+id/gilBet"
+            app:layout_constraintStart_toStartOf="@+id/gilBet"
+            app:layout_constraintTop_toBottomOf="@+id/gilBet" />
+
+        <Button
+            android:id="@+id/talWonButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:backgroundTint="@color/winButtonBackground"
+            android:text="@string/win_button"
+            android:textColor="@color/winButton"
+            android:textSize="@dimen/winButtonTextSize"
+            app:layout_constraintEnd_toEndOf="@+id/talBet"
+            app:layout_constraintStart_toStartOf="@+id/talBet"
+            app:layout_constraintTop_toBottomOf="@+id/talBet" />
+
+        <Button
+            android:id="@+id/shayWonButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:backgroundTint="@color/winButtonBackground"
+            android:text="@string/win_button"
+            android:textColor="@color/winButton"
+            android:textSize="@dimen/winButtonTextSize"
+            app:layout_constraintEnd_toEndOf="@+id/shayBet"
+            app:layout_constraintStart_toStartOf="@+id/shayBet"
+            app:layout_constraintTop_toBottomOf="@+id/shayBet" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

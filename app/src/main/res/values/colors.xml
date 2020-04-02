@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00cc00</color>
+    <color name="colorPrimaryDark">#009900</color>
+    <color name="colorAccent">#00ff00</color>
+
+
+    <color name="background">#000000</color>
+    <color name="title">#ffffff</color>
+    <color name="positive_score">@color/colorPrimary</color>
+    <color name="negative_score">#ee0000</color>
+    <color name="bet">#ffffff</color>
+    <color name="winButton">@color/colorPrimaryDark</color>
+    <color name="winButtonBackground">#ffffff</color>
+
+</resources>

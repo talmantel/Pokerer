@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Pokerer</string>
+    <string name="player_name_gil">Gil</string>
+    <string name="player_name_tal">Tal</string>
+    <string name="player_name_shay">Shay</string>
+    <string name="win_button">Win</string>
+</resources>
