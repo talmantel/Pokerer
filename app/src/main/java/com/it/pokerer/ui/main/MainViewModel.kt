@@ -48,7 +48,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         if(totalWon > 0) {
             val winnerNewScore = scores[winner]!!.value!! + totalWon
             scores[winner]!!.value = winnerNewScore
-            newLastBets[winner] = totalWon
+            newLastBets[winner] = -totalWon
             repository.setPlayerScore(context, winner, winnerNewScore)
             _lastBets.value = newLastBets
         }
