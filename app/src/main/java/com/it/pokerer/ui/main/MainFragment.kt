@@ -68,15 +68,14 @@ class MainFragment : Fragment() {
                 }
         }
 
-        resources.getInteger(R.integer.default_bet).toString().let{
-            binding.gilBet.setText(it)
-            binding.talBet.setText(it)
-            binding.shayBet.setText(it)
+        resources.getInteger(R.integer.default_bet).toString().let{ defaultBet ->
+            binding.gilBet.setText(defaultBet)
+            binding.talBet.setText(defaultBet)
+            binding.shayBet.setText(defaultBet)
+            binding.gilTitle.setOnLongClickListener { binding.gilBet.setText(defaultBet); true }
+            binding.talTitle.setOnLongClickListener { binding.talBet.setText(defaultBet); true }
+            binding.shayTitle.setOnLongClickListener { binding.shayBet.setText(defaultBet); true }
         }
-
-        binding.gilTitle.setOnLongClickListener { binding.gilBet.setText("0"); true }
-        binding.talTitle.setOnLongClickListener { binding.talBet.setText("0"); true }
-        binding.shayTitle.setOnLongClickListener { binding.shayBet.setText("0"); true }
 
         return binding.root
     }
@@ -93,12 +92,14 @@ class MainFragment : Fragment() {
     }
 
     private fun resetBets(){
-        if (binding.gilBet.text.isNotEmpty())
-            binding.gilBet.setText("0")
-        if (binding.talBet.text.isNotEmpty())
-            binding.talBet.setText("0")
-        if (binding.shayBet.text.isNotEmpty())
-            binding.shayBet.setText("0")
+        resources.getInteger(R.integer.default_bet).toString().let { defaultBet ->
+            if (binding.gilBet.text.isNotEmpty())
+                binding.gilBet.setText(defaultBet)
+            if (binding.talBet.text.isNotEmpty())
+                binding.talBet.setText(defaultBet)
+            if (binding.shayBet.text.isNotEmpty())
+                binding.shayBet.setText(defaultBet)
+        }
 
         binding.gilBet.requestFocus()
         binding.gilBet.selectAll()
