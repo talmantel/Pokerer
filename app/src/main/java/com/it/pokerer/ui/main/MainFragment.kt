@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.it.pokerer.R
 import com.it.pokerer.Repository
 import com.it.pokerer.databinding.MainFragmentBinding
 
@@ -65,6 +66,12 @@ class MainFragment : Fragment() {
                     if(text.isNotEmpty())
                         requestFocus()
                 }
+        }
+
+        resources.getInteger(R.integer.default_bet).toString().let{
+            binding.gilBet.setText(it)
+            binding.talBet.setText(it)
+            binding.shayBet.setText(it)
         }
 
         binding.gilTitle.setOnLongClickListener { binding.gilBet.setText("0"); true }

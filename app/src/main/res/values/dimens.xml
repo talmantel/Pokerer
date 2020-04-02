@@ -5,6 +5,7 @@
     <dimen name="titleTextSize">40sp</dimen>
     <dimen name="scoreTextSize">30sp</dimen>
     <dimen name="betTextSize">25sp</dimen>
+    <dimen name="lastBetTextSize">18sp</dimen>
     <dimen name="winButtonTextSize">30sp</dimen>
     <dimen name="titleWidth">115dp</dimen>
 </resources>

@@ -165,7 +165,6 @@
             android:nextFocusRight="@id/gilBet"
             android:nextFocusForward="@id/gilBet"
             android:selectAllOnFocus="true"
-            android:text="0"
             android:textColor="@color/bet"
             android:textSize="@dimen/betTextSize"
             app:layout_constraintEnd_toEndOf="@+id/textView5"
@@ -211,6 +210,45 @@
             app:layout_constraintEnd_toEndOf="@+id/shayBet"
             app:layout_constraintStart_toStartOf="@+id/shayBet"
             app:layout_constraintTop_toBottomOf="@+id/shayBet" />
+
+        <TextView
+            android:id="@+id/gilLastBet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:score="@{-viewmodel.lastBets[gil]}"
+            android:textSize="@dimen/lastBetTextSize"
+            app:layout_constraintEnd_toEndOf="@+id/gilWonButton"
+            app:layout_constraintStart_toStartOf="@+id/gilWonButton"
+            app:layout_constraintTop_toBottomOf="@+id/gilWonButton"
+            tools:text="150"
+            tools:textColor="@color/positive_score" />
+
+        <TextView
+            android:id="@+id/talLastBet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:score="@{-viewmodel.lastBets[tal]}"
+            android:textSize="@dimen/lastBetTextSize"
+            app:layout_constraintEnd_toEndOf="@+id/talWonButton"
+            app:layout_constraintStart_toStartOf="@+id/talWonButton"
+            app:layout_constraintTop_toBottomOf="@+id/talWonButton"
+            tools:text="150"
+            tools:textColor="@color/positive_score" />
+
+        <TextView
+            android:id="@+id/shayLastBet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:score="@{-viewmodel.lastBets[shay]}"
+            android:textSize="@dimen/lastBetTextSize"
+            app:layout_constraintEnd_toEndOf="@+id/shayWonButton"
+            app:layout_constraintStart_toStartOf="@+id/shayWonButton"
+            app:layout_constraintTop_toBottomOf="@+id/shayWonButton"
+            tools:text="150"
+            tools:textColor="@color/positive_score" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
