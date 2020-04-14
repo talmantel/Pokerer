@@ -1,8 +1,9 @@
-package com.it.pokerer
+package com.it.pokerer.utils
 
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import com.it.pokerer.R
 import kotlin.math.absoluteValue
 import kotlin.math.sign
 

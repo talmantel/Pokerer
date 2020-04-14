@@ -1,34 +1,29 @@
 package com.it.pokerer.ui.main
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.it.pokerer.Repository
-import com.it.pokerer.Repository.Companion.Player
+import androidx.lifecycle.ViewModel
+import com.it.pokerer.data.Player
+import com.it.pokerer.data.Repository
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(private val repository: Repository) : ViewModel() {
 
-    private val context = getApplication<Application>().applicationContext
-    private val repository = Repository.instance
-
-    private val scores: MutableMap<Player, MutableLiveData<Int>> = mutableMapOf()
+    private val scores: MutableMap<Player, MutableLiveData<Int>> by lazy {
+        mutableMapOf<Player, MutableLiveData<Int>>().also { scores ->
+            Player.values().forEach { player ->
+                MutableLiveData(0).apply {
+                    value = repository.getPlayerScore(player)
+                }.also {
+                    scores[player] = it
+                }
+            }
+        }
+    }
 
     private val _lastBets: MutableLiveData<Map<Player, Int>> = MutableLiveData()
     val lastBets: LiveData<Map<Player, Int>> = _lastBets
 
     fun getPlayerScore(player : Player): LiveData<Int>? = scores[player]
-
-    init {
-        Player.values().forEach { player ->
-            MutableLiveData(0).apply {
-                value = repository.getPlayerScore(context, player)
-            }.also {
-                scores[player] = it
-            }
-        }
-    }
-
 
     fun roundPlayed(bets: Map<Player, Int>, winner: Player){
         var totalWon = 0
@@ -40,7 +35,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 totalWon += it.value
                 val newScore = scores[it.key]!!.value!! - it.value
                 scores[it.key]!!.value = newScore
-                repository.setPlayerScore(context, it.key, newScore)
+                repository.setPlayerScore(it.key, newScore)
                 newLastBets[it.key] = it.value
             }
         }
@@ -49,7 +44,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             val winnerNewScore = scores[winner]!!.value!! + totalWon
             scores[winner]!!.value = winnerNewScore
             newLastBets[winner] = -totalWon
-            repository.setPlayerScore(context, winner, winnerNewScore)
+            repository.setPlayerScore(winner, winnerNewScore)
             _lastBets.value = newLastBets
         }
     }

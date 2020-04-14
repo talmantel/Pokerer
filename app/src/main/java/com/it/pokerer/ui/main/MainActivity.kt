@@ -1,8 +1,8 @@
-package com.it.pokerer
+package com.it.pokerer.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.it.pokerer.ui.main.MainFragment
+import androidx.appcompat.app.AppCompatActivity
+import com.it.pokerer.R
 
 class MainActivity : AppCompatActivity() {
 

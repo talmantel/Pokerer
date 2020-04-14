@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.it.pokerer.R
-import com.it.pokerer.Repository
+import com.it.pokerer.data.Player
 import com.it.pokerer.databinding.MainFragmentBinding
+import com.it.pokerer.utils.InjectorUtils
 
 class MainFragment : Fragment() {
 
@@ -17,30 +18,34 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    private val viewModel: MainViewModel by viewModels()
+    private lateinit var viewModel: MainViewModel
 
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
+
+        val factory = InjectorUtils.provideMainViewModelFactory(requireActivity().application)
+        viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
+
         _binding = MainFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
-        binding.gil = Repository.Companion.Player.GIL
-        binding.tal = Repository.Companion.Player.TAL
-        binding.shay = Repository.Companion.Player.SHAY
+        binding.gil = Player.GIL
+        binding.tal = Player.TAL
+        binding.shay = Player.SHAY
 
         binding.gilWonButton.setOnClickListener {
-            viewModel.roundPlayed(getBets(), Repository.Companion.Player.GIL)
+            viewModel.roundPlayed(getBets(), Player.GIL)
             resetBets()
         }
         binding.talWonButton.setOnClickListener {
-            viewModel.roundPlayed(getBets(), Repository.Companion.Player.TAL)
+            viewModel.roundPlayed(getBets(), Player.TAL)
             resetBets()
         }
         binding.shayWonButton.setOnClickListener {
-            viewModel.roundPlayed(getBets(), Repository.Companion.Player.SHAY)
+            viewModel.roundPlayed(getBets(), Player.SHAY)
             resetBets()
         }
 
@@ -80,14 +85,14 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
-    private fun getBets(): Map<Repository.Companion.Player, Int>{
-        return mutableMapOf<Repository.Companion.Player, Int>().apply {
+    private fun getBets(): Map<Player, Int>{
+        return mutableMapOf<Player, Int>().apply {
             if (binding.gilBet.text.isNotEmpty() && Integer.valueOf(binding.gilBet.text.toString()) != 0)
-                put(Repository.Companion.Player.GIL, Integer.valueOf(binding.gilBet.text.toString()))
+                put(Player.GIL, Integer.valueOf(binding.gilBet.text.toString()))
             if (binding.talBet.text.isNotEmpty() && Integer.valueOf(binding.talBet.text.toString()) != 0)
-                put(Repository.Companion.Player.TAL, Integer.valueOf(binding.talBet.text.toString()))
+                put(Player.TAL, Integer.valueOf(binding.talBet.text.toString()))
             if (binding.shayBet.text.isNotEmpty() && Integer.valueOf(binding.shayBet.text.toString()) != 0)
-                put(Repository.Companion.Player.SHAY, Integer.valueOf(binding.shayBet.text.toString()))
+                put(Player.SHAY, Integer.valueOf(binding.shayBet.text.toString()))
         }
     }
 

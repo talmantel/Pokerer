@@ -9,13 +9,13 @@
             type="com.it.pokerer.ui.main.MainViewModel" />
         <variable
             name="gil"
-            type="com.it.pokerer.Repository.Companion.Player" />
+            type="com.it.pokerer.data.Player" />
         <variable
             name="tal"
-            type="com.it.pokerer.Repository.Companion.Player" />
+            type="com.it.pokerer.data.Player" />
         <variable
             name="shay"
-            type="com.it.pokerer.Repository.Companion.Player" />
+            type="com.it.pokerer.data.Player" />
 
     </data>
 
@@ -125,7 +125,6 @@
             android:nextFocusRight="@id/talBet"
             android:nextFocusForward="@id/talBet"
             android:selectAllOnFocus="true"
-            android:text="0"
             android:textColor="@color/bet"
             android:textSize="@dimen/betTextSize"
             app:layout_constraintEnd_toEndOf="@+id/textView3"
@@ -145,7 +144,6 @@
             android:nextFocusRight="@id/shayBet"
             android:nextFocusForward="@id/shayBet"
             android:selectAllOnFocus="true"
-            android:text="0"
             android:textColor="@color/bet"
             android:textSize="@dimen/betTextSize"
             app:layout_constraintEnd_toEndOf="@+id/textView4"
