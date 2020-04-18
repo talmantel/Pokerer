@@ -4,4 +4,6 @@
     <string name="player_name_tal">Tal</string>
     <string name="player_name_shay">Shay</string>
     <string name="win_button">Win</string>
+    <string name="action_bar_item_history">History</string>
+    <string name="action_bar_item_round">Round</string>
 </resources>

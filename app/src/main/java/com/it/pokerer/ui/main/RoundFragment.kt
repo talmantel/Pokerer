@@ -9,27 +9,22 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.it.pokerer.R
 import com.it.pokerer.data.Player
-import com.it.pokerer.databinding.MainFragmentBinding
+import com.it.pokerer.databinding.RoundFragmentBinding
 import com.it.pokerer.utils.InjectorUtils
 
-class MainFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
+class RoundFragment : Fragment() {
     private lateinit var viewModel: MainViewModel
 
-    private var _binding: MainFragmentBinding? = null
+    private var _binding: RoundFragmentBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
 
         val factory = InjectorUtils.provideMainViewModelFactory(requireActivity().application)
-        viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity(), factory).get(MainViewModel::class.java)
 
-        _binding = MainFragmentBinding.inflate(inflater, container, false)
+        _binding = RoundFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
         binding.gil = Player.GIL

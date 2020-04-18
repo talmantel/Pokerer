@@ -1,8 +1,9 @@
-package com.it.pokerer.ui.main
+package com.it.pokerer.utils
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.it.pokerer.data.Repository
+import com.it.pokerer.ui.main.MainViewModel
 
 class MainViewModelFactory(private val repository: Repository) :
     ViewModelProvider.NewInstanceFactory() {

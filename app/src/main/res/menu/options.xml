@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        app:showAsAction="ifRoom"
+        android:id="@+id/action_bar_item_history"
+        android:title="@string/action_bar_item_history"
+        android:icon="@android:drawable/ic_menu_recent_history" />
+
+    <item
+        app:showAsAction="ifRoom"
+        android:id="@+id/action_bar_item_round"
+        android:title="@string/action_bar_item_round"
+        android:icon="@android:drawable/ic_media_play"
+        app:iconTint="@android:color/white"/>
+
+</menu>
