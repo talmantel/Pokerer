@@ -16,7 +16,6 @@
         <variable
             name="shay"
             type="com.it.pokerer.data.Player" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
