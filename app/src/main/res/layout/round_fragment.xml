@@ -23,8 +23,9 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
-        tools:context=".ui.main.RoundFragment">
+        android:theme="@style/AppTheme"
+        tools:context=".ui.main.RoundFragment"
+        android:background="@color/background">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/topGuideline"

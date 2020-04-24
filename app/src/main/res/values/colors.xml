@@ -13,4 +13,6 @@
     <color name="winButton">@color/colorPrimaryDark</color>
     <color name="winButtonBackground">#ffffff</color>
 
+    <color name="ic_launcher_background">#008000</color>
+
 </resources>
