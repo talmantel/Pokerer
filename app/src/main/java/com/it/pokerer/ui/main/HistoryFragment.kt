@@ -1,6 +1,5 @@
 package com.it.pokerer.ui.main
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.it.pokerer.R
-import com.it.pokerer.data.Round
 import com.it.pokerer.utils.InjectorUtils
 
 class HistoryFragment : Fragment() {
@@ -29,20 +27,21 @@ class HistoryFragment : Fragment() {
 
         val roundsRecyclerView = rootView.findViewById<RecyclerView>(R.id.history_recycler_view)
 
-        val adapter = RoundHistoryAdapter(requireContext(), object: RoundHistoryAdapter.OnDeleteClickListener{
-            override fun onDelete(round: Round) {
-                AlertDialog.Builder(requireActivity())
-                    .setTitle("Are you sure you want to undo this round?")
-                    .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, _ ->
-                        viewModel.undoRound(round)
-                        dialog.dismiss()
-                    })
-                    .setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, _ ->
-                        dialog.dismiss()
-                    })
-                    .show()
-            }
-        })
+        val adapter = RoundHistoryAdapter(requireContext())
+
+        adapter.onLongClickListener = { round ->
+            AlertDialog.Builder(requireActivity())
+                .setTitle("Are you sure you want to undo this round?")
+                .setPositiveButton("Yes") { dialog, _ ->
+                    viewModel.undoRound(round)
+                    dialog.dismiss()
+                }
+                .setNegativeButton("Cancel") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
+
         roundsRecyclerView.adapter = adapter
         roundsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 

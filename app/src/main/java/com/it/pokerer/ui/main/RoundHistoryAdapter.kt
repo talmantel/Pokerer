@@ -12,14 +12,11 @@ import kotlinx.android.synthetic.main.round_item.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class RoundHistoryAdapter(private val context: Context,
-                          private val onDeleteClickListener: OnDeleteClickListener? = null) : RecyclerView.Adapter<RoundHistoryAdapter.RoundViewHolder>() {
+class RoundHistoryAdapter(private val context: Context) : RecyclerView.Adapter<RoundHistoryAdapter.RoundViewHolder>() {
 
     private var rounds: List<Round> = mutableListOf()
 
-    interface OnDeleteClickListener{
-        fun onDelete(round: Round)
-    }
+    var onLongClickListener: ((Round) -> Unit)? = null
 
     class RoundViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setData(ts: Date, gil: Int, tal: Int, shay: Int){
@@ -38,7 +35,7 @@ class RoundHistoryAdapter(private val context: Context,
     override fun onBindViewHolder(holder: RoundViewHolder, position: Int) {
         val round = rounds[position]
         holder.setData( SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault()).parse(round.ts)!!, round.gilWon, round.talWon, round.shayWon)
-        holder.itemView.setOnLongClickListener { onDeleteClickListener?.onDelete(round); true }
+        holder.itemView.setOnLongClickListener { onLongClickListener?.invoke(round); true }
     }
 
     override fun getItemCount() = rounds.size
